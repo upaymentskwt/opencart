@@ -4,7 +4,7 @@ UPayments payments, woocommerce, payment gateway, UPayments, pay with UPayments,
 
 == Prerequisites ==
 Upayments account
-OpenCart 4.0.2.2
+OpenCart 3.0.8.8
 
 == Installation ==
 
