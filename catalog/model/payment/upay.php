@@ -200,7 +200,9 @@ class Upay extends \Opencart\System\Engine\Model {
             CURLOPT_HTTPHEADER => array(
                 'Accept: application/json',
                 'Content-Type: application/json',
-                'Authorization: Bearer ' . $api_key
+                'Authorization: Bearer ' . $api_key,
+                'Uplugin-Request: 1',
+                'X-Signature:' .$api_key
             ),
             ));
 
