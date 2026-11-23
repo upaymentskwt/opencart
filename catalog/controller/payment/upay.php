@@ -103,7 +103,9 @@ class Upay extends \Opencart\System\Engine\Controller
 		  CURLOPT_HTTPHEADER => array(
 		    'Accept: application/json',
 		    'Content-Type: application/json',
-		    'Authorization: Bearer '.$this->config->get('payment_upay_apikey')
+		    'Authorization: Bearer '.$this->config->get('payment_upay_apikey'),
+		    'Uplugin-Request: 1', 
+		    'X-Signature:' .$this->config->get('payment_upay_apikey')
 		  ),
 		));
 
@@ -261,7 +263,7 @@ class Upay extends \Opencart\System\Engine\Controller
 				$apiUrl = $this->language->get('api_url');
 			}
 
-			curl_setopt_array($curl, [CURLOPT_URL => $apiUrl.'create-customer-unique-token' , CURLOPT_RETURNTRANSFER => true, CURLOPT_ENCODING => "", CURLOPT_MAXREDIRS => 10, CURLOPT_TIMEOUT => 0, CURLOPT_FOLLOWLOCATION => true, CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1, CURLOPT_CUSTOMREQUEST => "POST", CURLOPT_POSTFIELDS => $params, CURLOPT_HTTPHEADER => ["Accept: application/json", "Content-Type: application/json", "Authorization: Bearer " . $api_key, ], ]);
+			curl_setopt_array($curl, [CURLOPT_URL => $apiUrl.'create-customer-unique-token' , CURLOPT_RETURNTRANSFER => true, CURLOPT_ENCODING => "", CURLOPT_MAXREDIRS => 10, CURLOPT_TIMEOUT => 0, CURLOPT_FOLLOWLOCATION => true, CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1, CURLOPT_CUSTOMREQUEST => "POST", CURLOPT_POSTFIELDS => $params, CURLOPT_HTTPHEADER => ["Accept: application/json", "Content-Type: application/json", "Authorization: Bearer " . $api_key, "Uplugin-Request: 1", "X-Signature:" .$api_key], ]);
 
 			$response = curl_exec($curl);
 			if ($response)

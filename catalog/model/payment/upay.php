@@ -57,19 +57,25 @@ class Upay extends \Opencart\System\Engine\Model {
             if($payment_buttons['knet'] == 1){
                 $option_data['knet'] = [
                 'code' => 'upay.knet',
-                'name' => 'Knet'
+                'name' => 'KNET'
+                ];
+            }
+            if($payment_buttons['apple_pay_knet'] == 1 && $apple_pay_available == true){
+                $option_data['apple-pay-knet'] = [
+                    'code' => 'upay.apple-pay-knet',
+                    'name' => 'Apple Pay KNET'
                 ];
             }
             if($payment_buttons['credit_card'] == 1){
                 $option_data['cc'] = [
                     'code' => 'upay.cc',
-                    'name' => 'Card'
+                    'name' => 'Credit Card'
                 ];
             }
-            if($payment_buttons['samsung_pay'] == 1){
-                $option_data['samsung-pay'] = [
-                    'code' => 'upay.samsung-pay',
-                    'name' => 'Samsung Pay'
+            if($payment_buttons['apple_pay'] == 1 && $apple_pay_available == true){
+                $option_data['apple-pay'] = [
+                    'code' => 'upay.apple-pay',
+                    'name' => 'Apple Pay Credit Card'
                 ];
             }
             if($payment_buttons['google_pay'] == 1){
@@ -78,10 +84,10 @@ class Upay extends \Opencart\System\Engine\Model {
                     'name' => 'Google Pay'
                 ];
             }
-            if($payment_buttons['apple_pay'] == 1 && $apple_pay_available == true){
-                $option_data['apple-pay'] = [
-                    'code' => 'upay.apple-pay',
-                    'name' => 'Apple Pay'
+            if($payment_buttons['samsung_pay'] == 1){
+                $option_data['samsung-pay'] = [
+                    'code' => 'upay.samsung-pay',
+                    'name' => 'Samsung Pay'
                 ];
             }
             if($payment_buttons['amex'] == 1){
@@ -194,7 +200,9 @@ class Upay extends \Opencart\System\Engine\Model {
             CURLOPT_HTTPHEADER => array(
                 'Accept: application/json',
                 'Content-Type: application/json',
-                'Authorization: Bearer ' . $api_key
+                'Authorization: Bearer ' . $api_key,
+                'Uplugin-Request: 1',
+                'X-Signature:' .$api_key
             ),
             ));
 
