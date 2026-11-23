@@ -37,3 +37,4 @@ Click on save Button
 == Plugin Version ==
 4.0.0
  - Apple Knet Button Added.
+ - Implement HMAC Authentication changes
